@@ -24,11 +24,12 @@ public class LaptopController {
         return laptopService.createLaptop(laptop);
     }
 
-    @GetMapping("/search/id/{id}")
+    @GetMapping("/id/{id}")
     public List<LaptopEntity> getById(@PathVariable long id) {
         return laptopService.getDevisesById(id);
     }
-    @DeleteMapping("/search/delete/id/{id}")
+
+    @DeleteMapping("/id/{id}")
     public LaptopEntity deleteById(@PathVariable long id) {
         return laptopService.deleteDeviceById(id);
     }
