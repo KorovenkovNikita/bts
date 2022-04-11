@@ -18,6 +18,13 @@ public class LaptopEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
-    private String core;
-    private String graphicsCard;
+    private String screenDiagonalInInches;
+    private String screenResolution;
+    private String screenBrightness;
+    private String processorManufacturer;
+    private String processorNumber;
+    private String processorModel;
+    private String graphicsCardManufacturer;
+    private String graphicsCardModelNumber;
+    private String amountOfVideoMemory;
 }

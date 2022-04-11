@@ -8,6 +8,7 @@ import java.util.List;
 
 @Repository
 public interface LaptopRepository extends JpaRepository<LaptopEntity, Long> {
-    List<LaptopEntity> findAllByCore(String core);
+    List<LaptopEntity> findAllById(long id);
+    LaptopEntity deleteById(long id);
 }
 

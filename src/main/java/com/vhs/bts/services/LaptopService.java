@@ -21,7 +21,10 @@ public class LaptopService {
         return laptopRepository.save(laptop);
     }
 
-    public List<LaptopEntity> getDevisesByCore(String core) {
-        return laptopRepository.findAllByCore(core);
+    public List<LaptopEntity> getDevisesById(long id) {
+        return laptopRepository.findAllById(id);
+    }
+    public LaptopEntity deleteDeviceById(long id) {
+        return laptopRepository.deleteById(id);
     }
 }

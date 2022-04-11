@@ -24,9 +24,13 @@ public class LaptopController {
         return laptopService.createLaptop(laptop);
     }
 
-    @GetMapping("/search/core/{core}")
-    public List<LaptopEntity> getByCore(@PathVariable String core) {
-        return laptopService.getDevisesByCore(core);
+    @GetMapping("/search/id/{id}")
+    public List<LaptopEntity> getById(@PathVariable long id) {
+        return laptopService.getDevisesById(id);
+    }
+    @DeleteMapping("/search/delete/id/{id}")
+    public LaptopEntity deleteById(@PathVariable long id) {
+        return laptopService.deleteDeviceById(id);
     }
 }
 
