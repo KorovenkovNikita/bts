@@ -25,7 +25,7 @@ public class LaptopService {
 
     public LaptopEntity createLaptop(LaptopDtoIn laptopDto) {
 
-        return laptopRepository.save(new LaptopEntity(laptopDto, graphicCardService.getGraphicCardById(laptopDto.getGraphicCardId()), processorService.getGraphicCardById(laptopDto.getProcessor()),screenService.getScreenById(laptopDto.getScreen())));
+        return laptopRepository.save(new LaptopEntity(laptopDto, graphicCardService.getGraphicCardById(laptopDto.getGraphicCardId()), processorService.getProcessorById(laptopDto.getProcessor()),screenService.getScreenById(laptopDto.getScreen())));
     }
 
     public LaptopEntity getLaptopById(long id) {

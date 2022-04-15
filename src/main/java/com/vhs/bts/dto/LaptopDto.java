@@ -9,8 +9,6 @@ import lombok.Data;
 public class LaptopDto {
     private long id;
     private String name;
-    private String screenDiagonalInInches;
-    private String screenResolution;
     private ScreenDto screen;
     private ProcessorDto processor;
     private GraphicCardDto graphicCard;

@@ -1,5 +1,6 @@
 package com.vhs.bts.entities;
 
+import com.vhs.bts.dto.ProcessorDtoIn;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,4 +22,10 @@ public class ProcessorEntity {
     private String processorModel;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "processor")
     private List<LaptopEntity> laptops;
+
+    public ProcessorEntity(ProcessorDtoIn processorDto) {
+        setProcessorManufacturer(processorDto.getProcessorManufacturer());
+        setProcessorNumber(processorDto.getProcessorNumber());
+        setProcessorModel(processorDto.getProcessorModel());
+    }
 }

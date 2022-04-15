@@ -1,5 +1,6 @@
 package com.vhs.bts.services;
 
+import com.vhs.bts.dto.GraphicCardDtoIn;
 import com.vhs.bts.entities.GraphicCardEntity;
 import com.vhs.bts.exceptions.BtsException;
 import com.vhs.bts.repositories.GraphicCardRepository;
@@ -23,4 +24,19 @@ public class GraphicCardService {
         return graphicCardRepository.findById(id).orElseThrow(() -> new BtsException(HttpStatus.NOT_FOUND, "Cannot find graphicCard with id = " + id));
     }
 
+    public GraphicCardEntity createGraphicCard(GraphicCardDtoIn graphicCardDto) {
+        return graphicCardRepository.save(new GraphicCardEntity(graphicCardDto));
+    }
+
+    public void deleteGraphicCardById(long id) {
+        graphicCardRepository.deleteById(id);
+    }
+
+    public GraphicCardEntity updateGraphicCardById(long id, GraphicCardEntity newGraphicCardEntity) {
+        GraphicCardEntity graphicCard = getGraphicCardById(id);
+        graphicCard.setManufacturer(newGraphicCardEntity.getManufacturer());
+        graphicCard.setModelNumber(newGraphicCardEntity.getManufacturer());
+        graphicCard.setMemory(newGraphicCardEntity.getMemory());
+        return graphicCardRepository.save(graphicCard);
+    }
 }
