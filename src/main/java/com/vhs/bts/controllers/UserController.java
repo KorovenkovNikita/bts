@@ -1,5 +1,6 @@
 package com.vhs.bts.controllers;
 
+import com.vhs.bts.dto.UserDtoIn;
 import com.vhs.bts.entities.UserEntity;
 import com.vhs.bts.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -13,20 +14,29 @@ import java.util.List;
 @RequiredArgsConstructor(onConstructor_ = {@Autowired})
 public class UserController {
     private final UserService userService;
+
     @GetMapping
     public List<UserEntity> getUsers() {
         return userService.getUsers();
     }
+
     @PostMapping
-    public UserEntity createLaptop(@RequestBody UserEntity user) {
-        return userService.createUser(user);
+    public UserEntity createUser(@RequestBody UserDtoIn userDto) {
+        return userService.createUser(userDto);
     }
-    @GetMapping("/id/{id}")
-    public List<UserEntity> getById(@PathVariable long id) {
-        return userService.getUsersById(id);
+
+    @GetMapping("/{id}")
+    public UserEntity getUserById(@PathVariable long id) {
+        return userService.getUserById(id);
     }
-    @DeleteMapping("/id/{id}")
-    public UserEntity deleteById(@PathVariable long id) {
-        return userService.deleteUserById(id);
+
+    @DeleteMapping("/{id}")
+    public void deleteUserById(@PathVariable long id) {
+        userService.deleteUserById(id);
+    }
+
+    @PutMapping("/{id}")
+    public UserEntity updateUserById(@PathVariable long id, @RequestBody UserDtoIn newUser) {
+        return userService.updateUserById(id, newUser);
     }
 }

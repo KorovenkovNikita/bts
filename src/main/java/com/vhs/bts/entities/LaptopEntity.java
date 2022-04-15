@@ -1,14 +1,13 @@
 package com.vhs.bts.entities;
 
+import com.vhs.bts.dto.LaptopDtoIn;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+@Table(name = "laptop")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,13 +17,17 @@ public class LaptopEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
-    private String screenDiagonalInInches;
-    private String screenResolution;
-    private String screenBrightness;
-    private String processorManufacturer;
-    private String processorNumber;
-    private String processorModel;
-    private String graphicsCardManufacturer;
-    private String graphicsCardModelNumber;
-    private String amountOfVideoMemory;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private GraphicCardEntity graphicCard;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private ProcessorEntity processor;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private ScreenEntity screen;
+
+    public LaptopEntity(LaptopDtoIn laptopDto, GraphicCardEntity graphicCardEntity, ProcessorEntity processor, ScreenEntity screen) {
+        setName(laptopDto.getName());
+        setScreen(screen);
+        setGraphicCard(graphicCardEntity);
+        setProcessor(processor);
+    }
 }

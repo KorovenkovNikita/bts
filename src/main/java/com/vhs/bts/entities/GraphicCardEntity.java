@@ -1,26 +1,23 @@
 package com.vhs.bts.entities;
 
-import com.vhs.bts.dto.UserDtoIn;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-
-@Table(name = "user")
+import java.util.List;
+@Table(name = "graphic_card")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class UserEntity {
+public class GraphicCardEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String fullName;
-    private String email;
-
-    public UserEntity(UserDtoIn userDto) {
-        setFullName(userDto.getFullName());
-        setEmail(userDto.getEmail());
-    }
+    private String manufacturer;
+    private String modelNumber;
+    private int memory;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "graphicCard")
+    private List<LaptopEntity> laptops;
 }

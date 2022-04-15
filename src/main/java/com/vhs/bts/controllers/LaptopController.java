@@ -1,12 +1,14 @@
 package com.vhs.bts.controllers;
 
+import com.vhs.bts.dto.LaptopDto;
+import com.vhs.bts.dto.LaptopDtoIn;
 import com.vhs.bts.entities.LaptopEntity;
 import com.vhs.bts.services.LaptopService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/laptops")
@@ -15,23 +17,28 @@ public class LaptopController {
     private final LaptopService laptopService;
 
     @GetMapping
-    public List<LaptopEntity> getLaptops() {
-        return laptopService.getLaptops();
+    public List<LaptopDto> getLaptops() {
+        return laptopService.getLaptops().stream().map(LaptopDto::new).collect(Collectors.toList());
     }
 
     @PostMapping
-    public LaptopEntity createLaptop(@RequestBody LaptopEntity laptop) {
-        return laptopService.createLaptop(laptop);
+    public LaptopDto createLaptop(@RequestBody LaptopDtoIn laptopDto) {
+        return new LaptopDto(laptopService.createLaptop(laptopDto));
     }
 
-    @GetMapping("/id/{id}")
-    public List<LaptopEntity> getById(@PathVariable long id) {
-        return laptopService.getDevisesById(id);
+    @GetMapping("/{id}")
+    public LaptopEntity getByLaptopId(@PathVariable long id) {
+        return laptopService.getLaptopById(id);
     }
 
-    @DeleteMapping("/id/{id}")
-    public LaptopEntity deleteById(@PathVariable long id) {
-        return laptopService.deleteDeviceById(id);
+    @DeleteMapping("/{id}")
+    public void deleteLaptopById(@PathVariable long id) {
+        laptopService.deleteLaptopById(id);
+    }
+
+    @PutMapping("/{id}")
+    public LaptopEntity updateLaptopById(@PathVariable long id, @RequestBody LaptopEntity newLaptopEntity) {
+        return laptopService.updateLaptopById(id, newLaptopEntity);
     }
 }
 

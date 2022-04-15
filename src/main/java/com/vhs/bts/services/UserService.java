@@ -1,12 +1,16 @@
 package com.vhs.bts.services;
 
+import com.vhs.bts.dto.UserDtoIn;
 import com.vhs.bts.entities.UserEntity;
+import com.vhs.bts.exceptions.BtsException;
 import com.vhs.bts.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 
 @Service
 @RequiredArgsConstructor(onConstructor_ = {@Autowired})
@@ -17,15 +21,22 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public UserEntity createUser(UserEntity user) {
+    public UserEntity createUser(UserDtoIn userDto) {
+        return userRepository.save(new UserEntity(userDto));
+    }
+
+    public UserEntity getUserById(long id) {
+        return userRepository.findById(id).orElseThrow(() -> new BtsException(HttpStatus.NOT_FOUND, "Cannot find user with id = " + id));
+    }
+
+    public void deleteUserById(long id) {
+        userRepository.deleteById(id);
+    }
+
+    public UserEntity updateUserById(long id, UserDtoIn newUser) {
+        UserEntity user = getUserById(id);
+        user.setFullName(newUser.getFullName());
+        user.setEmail(newUser.getEmail());
         return userRepository.save(user);
-    }
-
-    public List<UserEntity> getUsersById(long id) {
-        return userRepository.findAllById(id);
-    }
-
-    public UserEntity deleteUserById(long id) {
-        return userRepository.deleteById(id);
     }
 }
