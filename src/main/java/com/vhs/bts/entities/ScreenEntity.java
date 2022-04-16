@@ -1,5 +1,6 @@
 package com.vhs.bts.entities;
 
+import com.vhs.bts.dto.ScreenDtoIn;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,4 +22,9 @@ public class ScreenEntity {
     private String screenBrightness;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "screen")
     private List<LaptopEntity> laptops;
+    public ScreenEntity(ScreenDtoIn screenDto){
+        setScreenDiagonalInInches(screenDto.getScreenDiagonalInInches());
+        setScreenResolution(screenDto.getScreenResolution());
+        setScreenBrightness(screenDto.getScreenBrightness());
+    }
 }

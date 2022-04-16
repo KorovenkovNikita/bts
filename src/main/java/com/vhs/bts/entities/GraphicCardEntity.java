@@ -1,7 +1,6 @@
 package com.vhs.bts.entities;
 
 import com.vhs.bts.dto.GraphicCardDtoIn;
-import com.vhs.bts.dto.LaptopDtoIn;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,6 +1,8 @@
 package com.vhs.bts.services;
 
 
+import com.vhs.bts.dto.ScreenDtoIn;
+import com.vhs.bts.entities.LaptopEntity;
 import com.vhs.bts.entities.ScreenEntity;
 import com.vhs.bts.exceptions.BtsException;
 import com.vhs.bts.repositories.ScreenRepository;
@@ -9,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor(onConstructor_ = {@Autowired})
 public class ScreenService {
@@ -16,5 +20,25 @@ public class ScreenService {
 
     public ScreenEntity getScreenById(long id) {
         return screenRepository.findById(id).orElseThrow(() -> new BtsException(HttpStatus.NOT_FOUND, "Cannot find screen with id = " + id));
+    }
+
+    public List<ScreenEntity> getScreens() {
+        return screenRepository.findAll();
+    }
+
+    public ScreenEntity createScreen(ScreenDtoIn screenDto) {
+        return screenRepository.save(new ScreenEntity(screenDto));
+    }
+
+    public void deleteScreenById(long id) {
+        screenRepository.deleteById(id);
+    }
+
+    public ScreenEntity updateScreenById(long id, ScreenEntity newScreenEntity) {
+        ScreenEntity screen = getScreenById(id);
+        screen.setScreenDiagonalInInches(newScreenEntity.getScreenDiagonalInInches());
+        screen.setScreenResolution(newScreenEntity.getScreenResolution());
+        screen.setScreenBrightness(newScreenEntity.getScreenBrightness());
+        return screenRepository.save(screen);
     }
 }
