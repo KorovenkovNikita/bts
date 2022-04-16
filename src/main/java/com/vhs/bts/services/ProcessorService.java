@@ -1,8 +1,6 @@
 package com.vhs.bts.services;
 
-import com.vhs.bts.dto.GraphicCardDtoIn;
 import com.vhs.bts.dto.ProcessorDtoIn;
-import com.vhs.bts.entities.GraphicCardEntity;
 import com.vhs.bts.entities.ProcessorEntity;
 import com.vhs.bts.exceptions.BtsException;
 import com.vhs.bts.repositories.ProcessorRepository;

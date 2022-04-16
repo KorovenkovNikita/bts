@@ -2,7 +2,6 @@ package com.vhs.bts.services;
 
 
 import com.vhs.bts.dto.ScreenDtoIn;
-import com.vhs.bts.entities.LaptopEntity;
 import com.vhs.bts.entities.ScreenEntity;
 import com.vhs.bts.exceptions.BtsException;
 import com.vhs.bts.repositories.ScreenRepository;
