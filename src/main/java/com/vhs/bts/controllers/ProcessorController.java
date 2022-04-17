@@ -2,7 +2,6 @@ package com.vhs.bts.controllers;
 
 import com.vhs.bts.dto.ProcessorDto;
 import com.vhs.bts.dto.ProcessorDtoIn;
-import com.vhs.bts.entities.ProcessorEntity;
 import com.vhs.bts.services.ProcessorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +27,8 @@ public class ProcessorController {
     }
 
     @GetMapping("/{id}")
-    public ProcessorEntity getProcessorById(@PathVariable long id) {
-        return processorService.getProcessorById(id);
+    public ProcessorDto getProcessorById(@PathVariable long id) {
+        return new ProcessorDto(processorService.getProcessorById(id));
     }
 
     @DeleteMapping("/{id}")
@@ -38,7 +37,7 @@ public class ProcessorController {
     }
 
     @PutMapping("/{id}")
-    public ProcessorEntity updateProcessorById(@PathVariable long id, @RequestBody ProcessorEntity newProcessorEntity) {
-        return processorService.updateProcessorById(id, newProcessorEntity);
+    public ProcessorDto updateProcessorById(@PathVariable long id, @RequestBody ProcessorDtoIn processorDto) {
+        return new ProcessorDto(processorService.updateProcessorById(id, processorDto));
     }
 }

@@ -32,7 +32,7 @@ public class GraphicCardService {
         graphicCardRepository.deleteById(id);
     }
 
-    public GraphicCardEntity updateGraphicCardById(long id, GraphicCardEntity newGraphicCardEntity) {
+    public GraphicCardEntity updateGraphicCardById(long id, GraphicCardDtoIn newGraphicCardEntity) {
         GraphicCardEntity graphicCard = getGraphicCardById(id);
         graphicCard.setManufacturer(newGraphicCardEntity.getManufacturer());
         graphicCard.setModelNumber(newGraphicCardEntity.getManufacturer());

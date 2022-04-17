@@ -7,7 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class LaptopDtoIn {
     private String name;
-    private long screen;
-    private long graphicCardId;
-    private long processor;
+    private Long screenId;
+    private Long graphicCardId;
+    private Long processorId;
 }

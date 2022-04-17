@@ -7,6 +7,7 @@ import com.vhs.bts.services.LaptopService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,8 +38,8 @@ public class LaptopController {
     }
 
     @PutMapping("/{id}")
-    public LaptopEntity updateLaptopById(@PathVariable long id, @RequestBody LaptopEntity newLaptopEntity) {
-        return laptopService.updateLaptopById(id, newLaptopEntity);
+    public LaptopDto updateLaptopById(@PathVariable long id, @RequestBody LaptopDtoIn laptopDto) {
+        return new LaptopDto(laptopService.updateLaptopById(id,laptopDto));
     }
 }
 

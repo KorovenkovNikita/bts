@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor(onConstructor_ = {@Autowired})
 public class ProcessorService {
-    private ProcessorRepository processorRepository;
+    private final ProcessorRepository processorRepository;
 
     public List<ProcessorEntity> getProcessors() {
         return processorRepository.findAll();
@@ -23,6 +23,7 @@ public class ProcessorService {
     public ProcessorEntity getProcessorById(long id) {
         return processorRepository.findById(id).orElseThrow(() -> new BtsException(HttpStatus.NOT_FOUND, "Cannot find processor with id = " + id));
     }
+    
     public ProcessorEntity createProcessor(ProcessorDtoIn processorDto) {
         return processorRepository.save(new ProcessorEntity(processorDto));
     }
@@ -31,7 +32,7 @@ public class ProcessorService {
         processorRepository.deleteById(id);
     }
 
-    public ProcessorEntity updateProcessorById(long id, ProcessorEntity newProcessorEntity) {
+    public ProcessorEntity updateProcessorById(long id, ProcessorDtoIn newProcessorEntity) {
         ProcessorEntity processor = getProcessorById(id);
         processor.setProcessorManufacturer(newProcessorEntity.getProcessorManufacturer());
         processor.setProcessorNumber(newProcessorEntity.getProcessorNumber());

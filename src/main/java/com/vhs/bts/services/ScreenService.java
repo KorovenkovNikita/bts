@@ -15,10 +15,12 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor(onConstructor_ = {@Autowired})
 public class ScreenService {
+
     private final ScreenRepository screenRepository;
 
     public ScreenEntity getScreenById(long id) {
-        return screenRepository.findById(id).orElseThrow(() -> new BtsException(HttpStatus.NOT_FOUND, "Cannot find screen with id = " + id));
+        return screenRepository.findById(id)
+            .orElseThrow(() -> new BtsException(HttpStatus.NOT_FOUND, "Cannot find screen with id = " + id));
     }
 
     public List<ScreenEntity> getScreens() {
@@ -33,11 +35,11 @@ public class ScreenService {
         screenRepository.deleteById(id);
     }
 
-    public ScreenEntity updateScreenById(long id, ScreenEntity newScreenEntity) {
+    public ScreenEntity updateScreenById(long id, ScreenDtoIn screenDto) {
         ScreenEntity screen = getScreenById(id);
-        screen.setScreenDiagonalInInches(newScreenEntity.getScreenDiagonalInInches());
-        screen.setScreenResolution(newScreenEntity.getScreenResolution());
-        screen.setScreenBrightness(newScreenEntity.getScreenBrightness());
+        screen.setScreenDiagonalInInches(screenDto.getScreenDiagonalInInches());
+        screen.setScreenResolution(screenDto.getScreenResolution());
+        screen.setScreenBrightness(screenDto.getScreenBrightness());
         return screenRepository.save(screen);
     }
 }

@@ -2,7 +2,6 @@ package com.vhs.bts.controllers;
 
 import com.vhs.bts.dto.ScreenDto;
 import com.vhs.bts.dto.ScreenDtoIn;
-import com.vhs.bts.entities.ScreenEntity;
 import com.vhs.bts.services.ScreenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/screen")
 @RequiredArgsConstructor(onConstructor_ = {@Autowired})
 public class ScreenController {
-    private ScreenService screenService;
+    private final ScreenService screenService;
     @GetMapping
     public List<ScreenDto> getScreens (){
         return screenService.getScreens().stream().map(ScreenDto::new).collect(Collectors.toList());
@@ -24,16 +23,17 @@ public class ScreenController {
     public ScreenDto createScreen (@RequestBody ScreenDtoIn screenDto){
         return new ScreenDto(screenService.createScreen(screenDto));
     }
+
     @GetMapping("/{id}")
-    public ScreenEntity getScreenById (@PathVariable long id){
-        return screenService.getScreenById(id);
+    public ScreenDto getScreenById (@PathVariable long id){
+        return new ScreenDto(screenService.getScreenById(id));
     }
     @DeleteMapping("/{id}")
     public void deleteScreenById (@PathVariable long id){
         screenService.deleteScreenById(id);
     }
     @PutMapping("/{id}")
-    public ScreenEntity updateScreenBiId(@PathVariable long id, @RequestBody ScreenEntity newScreenEntity){
-        return screenService.updateScreenById(id, newScreenEntity);
+    public ScreenDto updateScreenBiId(@PathVariable long id, @RequestBody ScreenDtoIn screenDto){
+        return new ScreenDto(screenService.updateScreenById(id, screenDto));
     }
 }
