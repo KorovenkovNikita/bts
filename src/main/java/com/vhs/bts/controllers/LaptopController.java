@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/laptops")
 @RequiredArgsConstructor(onConstructor_ = {@Autowired})
 public class LaptopController {
+
     private final LaptopService laptopService;
 
     @GetMapping
@@ -39,7 +40,7 @@ public class LaptopController {
 
     @PutMapping("/{id}")
     public LaptopDto updateLaptopById(@PathVariable long id, @RequestBody LaptopDtoIn laptopDto) {
-        return new LaptopDto(laptopService.updateLaptopById(id,laptopDto));
+        return new LaptopDto(laptopService.updateLaptopById(id, laptopDto));
     }
 }
 
