@@ -5,17 +5,25 @@ import com.vhs.bts.dto.LaptopDtoIn;
 import com.vhs.bts.entities.LaptopEntity;
 import com.vhs.bts.services.LaptopService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 @RestController
 @RequestMapping("/api/laptops")
 @RequiredArgsConstructor(onConstructor_ = {@Autowired})
 public class LaptopController {
+
     private final LaptopService laptopService;
+
+
 
     @GetMapping
     public List<LaptopDto> getLaptops() {
@@ -39,7 +47,7 @@ public class LaptopController {
 
     @PutMapping("/{id}")
     public LaptopDto updateLaptopById(@PathVariable long id, @RequestBody LaptopDtoIn laptopDto) {
-        return new LaptopDto(laptopService.updateLaptopById(id,laptopDto));
+        return new LaptopDto(laptopService.updateLaptopById(id, laptopDto));
     }
 }
 
