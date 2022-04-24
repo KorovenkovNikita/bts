@@ -26,17 +26,17 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public UserEntity getUserById(@PathVariable long id) {
+    public UserEntity getUserById(@PathVariable Long id) {
         return userService.getUserById(id);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteUserById(@PathVariable long id) {
+    public void deleteUserById(@PathVariable Long id) {
         userService.deleteUserById(id);
     }
 
     @PutMapping("/{id}")
-    public UserEntity updateUserById(@PathVariable long id, @RequestBody UserDtoIn newUser) {
+    public UserEntity updateUserById(@PathVariable Long id, @RequestBody UserDtoIn newUser) {
         return userService.updateUserById(id, newUser);
     }
 }

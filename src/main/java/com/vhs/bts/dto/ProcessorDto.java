@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class ProcessorDto {
-    private long id;
+    private Long id;
     private String processorManufacturer;
     private String processorNumber;
     private String processorModel;

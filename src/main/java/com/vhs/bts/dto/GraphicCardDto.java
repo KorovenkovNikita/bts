@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class GraphicCardDto {
-    private long id;
+    private Long id;
     private String manufacturer;
     private String modelNumber;
     private int memory;

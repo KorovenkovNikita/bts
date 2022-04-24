@@ -20,7 +20,7 @@ public class GraphicCardService {
         return graphicCardRepository.findAll();
     }
 
-    public GraphicCardEntity getGraphicCardById(long id) {
+    public GraphicCardEntity getGraphicCardById(Long id) {
         return graphicCardRepository.findById(id).orElseThrow(() -> new BtsException(HttpStatus.NOT_FOUND, "Cannot find graphicCard with id = " + id));
     }
 
@@ -28,11 +28,11 @@ public class GraphicCardService {
         return graphicCardRepository.save(new GraphicCardEntity(graphicCardDto));
     }
 
-    public void deleteGraphicCardById(long id) {
+    public void deleteGraphicCardById(Long id) {
         graphicCardRepository.deleteById(id);
     }
 
-    public GraphicCardEntity updateGraphicCardById(long id, GraphicCardDtoIn newGraphicCardEntity) {
+    public GraphicCardEntity updateGraphicCardById(Long id, GraphicCardDtoIn newGraphicCardEntity) {
         GraphicCardEntity graphicCard = getGraphicCardById(id);
         graphicCard.setManufacturer(newGraphicCardEntity.getManufacturer());
         graphicCard.setModelNumber(newGraphicCardEntity.getManufacturer());

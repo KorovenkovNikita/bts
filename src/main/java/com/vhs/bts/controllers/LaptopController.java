@@ -29,17 +29,17 @@ public class LaptopController {
     }
 
     @GetMapping("/{id}")
-    public LaptopEntity getByLaptopId(@PathVariable long id) {
+    public LaptopEntity getByLaptopId(@PathVariable Long id) {
         return laptopService.getLaptopById(id);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteLaptopById(@PathVariable long id) {
+    public void deleteLaptopById(@PathVariable Long id) {
         laptopService.deleteLaptopById(id);
     }
 
     @PutMapping("/{id}")
-    public LaptopDto updateLaptopById(@PathVariable long id, @RequestBody LaptopDtoIn laptopDto) {
+    public LaptopDto updateLaptopById(@PathVariable Long id, @RequestBody LaptopDtoIn laptopDto) {
         return new LaptopDto(laptopService.updateLaptopById(id, laptopDto));
     }
 }

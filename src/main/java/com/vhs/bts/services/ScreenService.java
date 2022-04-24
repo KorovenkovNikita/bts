@@ -18,7 +18,7 @@ public class ScreenService {
 
     private final ScreenRepository screenRepository;
 
-    public ScreenEntity getScreenById(long id) {
+    public ScreenEntity getScreenById(Long id) {
         return screenRepository.findById(id)
             .orElseThrow(() -> new BtsException(HttpStatus.NOT_FOUND, "Cannot find screen with id = " + id));
     }
@@ -31,11 +31,11 @@ public class ScreenService {
         return screenRepository.save(new ScreenEntity(screenDto));
     }
 
-    public void deleteScreenById(long id) {
+    public void deleteScreenById(Long id) {
         screenRepository.deleteById(id);
     }
 
-    public ScreenEntity updateScreenById(long id, ScreenDtoIn screenDto) {
+    public ScreenEntity updateScreenById(Long id, ScreenDtoIn screenDto) {
         ScreenEntity screen = getScreenById(id);
         screen.setScreenDiagonalInInches(screenDto.getScreenDiagonalInInches());
         screen.setScreenResolution(screenDto.getScreenResolution());

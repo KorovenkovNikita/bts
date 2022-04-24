@@ -16,10 +16,10 @@ import java.util.List;
 public class GraphicCardEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String manufacturer;
     private String modelNumber;
-    private int memory;
+    private Integer memory;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "graphicCard")
     private List<LaptopEntity> laptops;
 

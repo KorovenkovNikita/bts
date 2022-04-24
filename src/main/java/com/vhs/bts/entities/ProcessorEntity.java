@@ -16,7 +16,7 @@ import java.util.List;
 public class ProcessorEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String processorManufacturer;
     private String processorNumber;
     private String processorModel;

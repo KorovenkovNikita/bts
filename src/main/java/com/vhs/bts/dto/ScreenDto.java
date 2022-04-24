@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class ScreenDto {
-    private long id;
+    private Long id;
     private String screenDiagonalInInches;
     private String screenResolution;
     private String screenBrightness;

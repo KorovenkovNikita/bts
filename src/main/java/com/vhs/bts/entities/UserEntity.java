@@ -15,9 +15,11 @@ import javax.persistence.*;
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String fullName;
     private String email;
+    @OneToOne(fetch = FetchType.LAZY,mappedBy = "user")
+    private BucketEntity bucket;
 
     public UserEntity(UserDtoIn userDto) {
         setFullName(userDto.getFullName());

@@ -27,17 +27,17 @@ public class ProcessorController {
     }
 
     @GetMapping("/{id}")
-    public ProcessorDto getProcessorById(@PathVariable long id) {
+    public ProcessorDto getProcessorById(@PathVariable Long id) {
         return new ProcessorDto(processorService.getProcessorById(id));
     }
 
     @DeleteMapping("/{id}")
-    public void deleteProcessorById(@PathVariable long id) {
+    public void deleteProcessorById(@PathVariable Long id) {
         processorService.deleteProcessorById(id);
     }
 
     @PutMapping("/{id}")
-    public ProcessorDto updateProcessorById(@PathVariable long id, @RequestBody ProcessorDtoIn processorDto) {
+    public ProcessorDto updateProcessorById(@PathVariable Long id, @RequestBody ProcessorDtoIn processorDto) {
         return new ProcessorDto(processorService.updateProcessorById(id, processorDto));
     }
 }

@@ -27,17 +27,17 @@ public class GraphicCardController {
     }
 
     @GetMapping("/{id}")
-    public GraphicCardDto getGraphicCardById(@PathVariable long id) {
+    public GraphicCardDto getGraphicCardById(@PathVariable Long id) {
         return new GraphicCardDto(graphicCardService.getGraphicCardById(id));
     }
 
     @DeleteMapping("/{id}")
-    public void deleteGraphicCardById(@PathVariable long id) {
+    public void deleteGraphicCardById(@PathVariable Long id) {
         graphicCardService.deleteGraphicCardById(id);
     }
 
     @PutMapping("/{id}")
-    public GraphicCardDto updateGraphicCardById(@PathVariable long id, @RequestBody GraphicCardDtoIn graphicCardDto) {
+    public GraphicCardDto updateGraphicCardById(@PathVariable Long id, @RequestBody GraphicCardDtoIn graphicCardDto) {
         return new GraphicCardDto(graphicCardService.updateGraphicCardById(id, graphicCardDto));
     }
 }

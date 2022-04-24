@@ -14,15 +14,17 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 public class ScreenEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String screenDiagonalInInches;
     private String screenResolution;
     private String screenBrightness;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "screen")
     private List<LaptopEntity> laptops;
-    public ScreenEntity(ScreenDtoIn screenDto){
+
+    public ScreenEntity(ScreenDtoIn screenDto) {
         setScreenDiagonalInInches(screenDto.getScreenDiagonalInInches());
         setScreenResolution(screenDto.getScreenResolution());
         setScreenBrightness(screenDto.getScreenBrightness());

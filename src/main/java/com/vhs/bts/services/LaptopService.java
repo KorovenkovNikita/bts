@@ -14,7 +14,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
-
 @Service
 @RequiredArgsConstructor(onConstructor_ = {@Autowired})
 @Slf4j
@@ -41,16 +40,16 @@ public class LaptopService {
             processorService.getProcessorById(laptopDto.getProcessorId()), screenService.getScreenById(laptopDto.getScreenId())));
     }
 
-    public LaptopEntity getLaptopById(long id) {
+    public LaptopEntity getLaptopById(Long id) {
         return laptopRepository.findById(id)
             .orElseThrow(() -> new BtsException(HttpStatus.NOT_FOUND, "Cannot find laptop with id = " + id));
     }
 
-    public void deleteLaptopById(long id) {
+    public void deleteLaptopById(Long id) {
         laptopRepository.deleteById(id);
     }
 
-    public LaptopEntity updateLaptopById(long id, LaptopDtoIn laptopDto) {
+    public LaptopEntity updateLaptopById(Long id, LaptopDtoIn laptopDto) {
         LaptopEntity laptop = getLaptopById(id);
         laptop.setName(laptopDto.getName());
         laptop.setScreen(screenService.getScreenById(laptopDto.getScreenId()));

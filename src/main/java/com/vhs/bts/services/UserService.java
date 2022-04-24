@@ -25,11 +25,11 @@ public class UserService {
         return userRepository.save(new UserEntity(userDto));
     }
 
-    public UserEntity getUserById(long id) {
+    public UserEntity getUserById(Long id) {
         return userRepository.findById(id).orElseThrow(() -> new BtsException(HttpStatus.NOT_FOUND, "Cannot find user with id = " + id));
     }
 
-    public void deleteUserById(long id) {
+    public void deleteUserById(Long id) {
         userRepository.deleteById(id);
     }
 

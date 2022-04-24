@@ -20,7 +20,7 @@ public class ProcessorService {
         return processorRepository.findAll();
     }
 
-    public ProcessorEntity getProcessorById(long id) {
+    public ProcessorEntity getProcessorById(Long id) {
         return processorRepository.findById(id).orElseThrow(() -> new BtsException(HttpStatus.NOT_FOUND, "Cannot find processor with id = " + id));
     }
     
@@ -28,11 +28,11 @@ public class ProcessorService {
         return processorRepository.save(new ProcessorEntity(processorDto));
     }
 
-    public void deleteProcessorById(long id) {
+    public void deleteProcessorById(Long id) {
         processorRepository.deleteById(id);
     }
 
-    public ProcessorEntity updateProcessorById(long id, ProcessorDtoIn newProcessorEntity) {
+    public ProcessorEntity updateProcessorById(Long id, ProcessorDtoIn newProcessorEntity) {
         ProcessorEntity processor = getProcessorById(id);
         processor.setProcessorManufacturer(newProcessorEntity.getProcessorManufacturer());
         processor.setProcessorNumber(newProcessorEntity.getProcessorNumber());

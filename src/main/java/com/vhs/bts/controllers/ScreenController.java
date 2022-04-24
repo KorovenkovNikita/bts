@@ -25,15 +25,15 @@ public class ScreenController {
     }
 
     @GetMapping("/{id}")
-    public ScreenDto getScreenById (@PathVariable long id){
+    public ScreenDto getScreenById (@PathVariable Long id){
         return new ScreenDto(screenService.getScreenById(id));
     }
     @DeleteMapping("/{id}")
-    public void deleteScreenById (@PathVariable long id){
+    public void deleteScreenById (@PathVariable Long id){
         screenService.deleteScreenById(id);
     }
     @PutMapping("/{id}")
-    public ScreenDto updateScreenBiId(@PathVariable long id, @RequestBody ScreenDtoIn screenDto){
+    public ScreenDto updateScreenBiId(@PathVariable Long id, @RequestBody ScreenDtoIn screenDto){
         return new ScreenDto(screenService.updateScreenById(id, screenDto));
     }
 }
