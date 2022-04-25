@@ -2,7 +2,6 @@ package com.vhs.bts.controllers;
 
 import com.vhs.bts.dto.BucketDto;
 import com.vhs.bts.dto.BucketDtoIn;
-import com.vhs.bts.dto.LaptopDto;
 import com.vhs.bts.services.BucketService;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,8 +24,8 @@ public class BucketController {
     public List<BucketDto> getBucket() {
         return bucketService.getBuckets().stream().map(BucketDto::new).collect(Collectors.toList());
     }
-//    @PostMapping
-//    public BucketDto createBucket(@RequestBody BucketDtoIn bucketDto){
-//        return new BucketDto((bucketService.createBucket(bucketDto));
-//    }
+    @PostMapping
+    public BucketDto createBucket(@RequestBody BucketDtoIn bucketDto){
+        return new BucketDto((bucketService.createBucket(bucketDto)));
+    }
 }
