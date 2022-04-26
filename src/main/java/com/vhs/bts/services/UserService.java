@@ -15,6 +15,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor(onConstructor_ = {@Autowired})
 public class UserService {
+    private final BucketService bucketService;
     private final UserRepository userRepository;
 
     public List<UserEntity> getUsers() {
@@ -22,7 +23,9 @@ public class UserService {
     }
 
     public UserEntity createUser(UserDtoIn userDto) {
-        return userRepository.save(new UserEntity(userDto));
+        UserEntity user = userRepository.save(new UserEntity(userDto));
+        bucketService.createEmptyBucketByUser(user);
+        return user;
     }
 
     public UserEntity getUserById(Long id) {
@@ -33,7 +36,7 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    public UserEntity updateUserById(long id, UserDtoIn newUser) {
+    public UserEntity updateUserById(Long id, UserDtoIn newUser) {
         UserEntity user = getUserById(id);
         user.setFullName(newUser.getFullName());
         user.setEmail(newUser.getEmail());

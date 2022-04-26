@@ -1,21 +1,17 @@
 package com.vhs.bts.dto;
 
-import com.vhs.bts.entities.ScreenEntity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ScreenDto {
     private Long id;
     private String screenDiagonalInInches;
     private String screenResolution;
     private String screenBrightness;
-
-    public ScreenDto(ScreenEntity screen) {
-        setId(screen.getId());
-        setScreenDiagonalInInches(screen.getScreenDiagonalInInches());
-        setScreenResolution(screen.getScreenResolution());
-        setScreenBrightness(screen.getScreenBrightness());
-    }
 }

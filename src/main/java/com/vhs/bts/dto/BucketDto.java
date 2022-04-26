@@ -1,20 +1,17 @@
 package com.vhs.bts.dto;
 
-import com.vhs.bts.entities.BucketEntity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.List;
-import java.util.stream.Collectors;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class BucketDto {
     private Long id;
-    private UserDto user;
+    private UserSlimDto user;
     private List<LaptopDto> laptops;
-
-
-    public BucketDto(BucketEntity bucket) {
-        setId(bucket.getId());
-        setLaptops(bucket.getLaptops().stream().map(LaptopDto::new).collect(Collectors.toList()));
-        setUser(new UserDto(bucket.getUser()));
-    }
 }

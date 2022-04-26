@@ -3,29 +3,30 @@ package com.vhs.bts.controllers;
 import com.vhs.bts.dto.LaptopDto;
 import com.vhs.bts.dto.LaptopDtoIn;
 import com.vhs.bts.entities.LaptopEntity;
+import com.vhs.bts.mapper.DtoConverter;
 import com.vhs.bts.services.LaptopService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/laptops")
 @RequiredArgsConstructor(onConstructor_ = {@Autowired})
 public class LaptopController {
 
+    private final DtoConverter dtoConverter;
     private final LaptopService laptopService;
 
     @GetMapping
     public List<LaptopDto> getLaptops() {
-        return laptopService.getLaptops().stream().map(LaptopDto::new).collect(Collectors.toList());
+        return dtoConverter.simpleConvert(laptopService.getLaptops(), LaptopDto.class);
     }
 
     @PostMapping
     public LaptopDto createLaptop(@RequestBody LaptopDtoIn laptopDto) {
-        return new LaptopDto(laptopService.createLaptop(laptopDto));
+        return dtoConverter.simpleConvert(laptopService.createLaptop(laptopDto), LaptopDto.class);
     }
 
     @GetMapping("/{id}")
@@ -40,7 +41,7 @@ public class LaptopController {
 
     @PutMapping("/{id}")
     public LaptopDto updateLaptopById(@PathVariable Long id, @RequestBody LaptopDtoIn laptopDto) {
-        return new LaptopDto(laptopService.updateLaptopById(id, laptopDto));
+        return dtoConverter.simpleConvert(laptopService.updateLaptopById(id, laptopDto), LaptopDto.class);
     }
 }
 

@@ -2,33 +2,35 @@ package com.vhs.bts.controllers;
 
 import com.vhs.bts.dto.ProcessorDto;
 import com.vhs.bts.dto.ProcessorDtoIn;
+import com.vhs.bts.mapper.DtoConverter;
 import com.vhs.bts.services.ProcessorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/processor")
 @RequiredArgsConstructor(onConstructor_ = {@Autowired})
 public class ProcessorController {
+
+    private final DtoConverter dtoConverter;
     private final ProcessorService processorService;
 
     @GetMapping
     public List<ProcessorDto> getProcessors() {
-        return processorService.getProcessors().stream().map(ProcessorDto::new).collect(Collectors.toList());
+        return dtoConverter.simpleConvert(processorService.getProcessors(), ProcessorDto.class);
     }
 
     @PostMapping
     public ProcessorDto createProcessor(@RequestBody ProcessorDtoIn processorDto) {
-        return new ProcessorDto(processorService.createProcessor(processorDto));
+        return dtoConverter.simpleConvert(processorService.createProcessor(processorDto), ProcessorDto.class);
     }
 
     @GetMapping("/{id}")
     public ProcessorDto getProcessorById(@PathVariable Long id) {
-        return new ProcessorDto(processorService.getProcessorById(id));
+        return dtoConverter.simpleConvert(processorService.getProcessorById(id), ProcessorDto.class);
     }
 
     @DeleteMapping("/{id}")
@@ -38,6 +40,6 @@ public class ProcessorController {
 
     @PutMapping("/{id}")
     public ProcessorDto updateProcessorById(@PathVariable Long id, @RequestBody ProcessorDtoIn processorDto) {
-        return new ProcessorDto(processorService.updateProcessorById(id, processorDto));
+        return dtoConverter.simpleConvert(processorService.updateProcessorById(id, processorDto), ProcessorDto.class);
     }
 }

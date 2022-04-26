@@ -1,11 +1,14 @@
 package com.vhs.bts.dto;
 
-import com.vhs.bts.entities.LaptopEntity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class LaptopDto {
     private Long id;
     private String name;
@@ -13,11 +16,4 @@ public class LaptopDto {
     private ProcessorDto processor;
     private GraphicCardDto graphicCard;
 
-    public LaptopDto(LaptopEntity laptop) {
-        setId(laptop.getId());
-        setName(laptop.getName());
-        setScreen(new ScreenDto(laptop.getScreen()));
-        setProcessor(new ProcessorDto(laptop.getProcessor()));
-        setGraphicCard(new GraphicCardDto(laptop.getGraphicCard()));
-    }
 }

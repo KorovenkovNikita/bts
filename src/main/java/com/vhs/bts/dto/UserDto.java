@@ -1,19 +1,19 @@
 package com.vhs.bts.dto;
 
-import com.vhs.bts.entities.UserEntity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class UserDto {
+
     private Long id;
     private String fullName;
     private String email;
-
-    public UserDto(UserEntity user) {
-     setId(user.getId());
-     setFullName(user.getFullName());
-     setEmail(user.getEmail());
-    }
+    private BucketDto bucket;
 }

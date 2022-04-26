@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ProcessorDto {
+public class UserSlimDto {
+
     private Long id;
-    private String processorManufacturer;
-    private String processorNumber;
-    private String processorModel;
+    private String fullName;
+    private String email;
 }

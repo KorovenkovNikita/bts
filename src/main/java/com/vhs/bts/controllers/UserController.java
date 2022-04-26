@@ -1,7 +1,9 @@
 package com.vhs.bts.controllers;
 
+import com.vhs.bts.dto.UserDto;
+import com.vhs.bts.dto.UserSlimDto;
 import com.vhs.bts.dto.UserDtoIn;
-import com.vhs.bts.entities.UserEntity;
+import com.vhs.bts.mapper.DtoConverter;
 import com.vhs.bts.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,21 +15,23 @@ import java.util.List;
 @RequestMapping("/api/users")
 @RequiredArgsConstructor(onConstructor_ = {@Autowired})
 public class UserController {
+
+    private final DtoConverter dtoConverter;
     private final UserService userService;
 
     @GetMapping
-    public List<UserEntity> getUsers() {
-        return userService.getUsers();
+    public List<UserSlimDto> getUsers() {
+        return dtoConverter.simpleConvert(userService.getUsers(), UserSlimDto.class);
     }
 
     @PostMapping
-    public UserEntity createUser(@RequestBody UserDtoIn userDto) {
-        return userService.createUser(userDto);
+    public UserSlimDto createUser(@RequestBody UserDtoIn userDto) {
+        return dtoConverter.simpleConvert(userService.createUser(userDto), UserSlimDto.class);
     }
 
     @GetMapping("/{id}")
-    public UserEntity getUserById(@PathVariable Long id) {
-        return userService.getUserById(id);
+    public UserDto getUserById(@PathVariable Long id) {
+        return dtoConverter.convertUser(userService.getUserById(id));
     }
 
     @DeleteMapping("/{id}")
@@ -36,7 +40,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public UserEntity updateUserById(@PathVariable Long id, @RequestBody UserDtoIn newUser) {
-        return userService.updateUserById(id, newUser);
+    public UserSlimDto updateUserById(@PathVariable Long id, @RequestBody UserDtoIn newUser) {
+        return dtoConverter.simpleConvert(userService.updateUserById(id, newUser), UserSlimDto.class);
     }
 }
