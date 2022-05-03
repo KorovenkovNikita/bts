@@ -15,6 +15,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor(onConstructor_ = {@Autowired})
 public class UserService {
+
     private final BucketService bucketService;
     private final UserRepository userRepository;
 
