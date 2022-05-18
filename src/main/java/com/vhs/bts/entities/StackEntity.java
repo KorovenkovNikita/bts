@@ -1,19 +1,19 @@
 package com.vhs.bts.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.vhs.bts.dto.StackDtoIn;
+import java.sql.Time;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -29,27 +29,34 @@ import lombok.ToString.Exclude;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "Stack")
+@Entity
 @Table(name = "stack")
-@Embeddable
 public class StackEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String address;
-//    @Column(name = "store_opening_date")
-    private Date dateOpen;
-//    @Column(name = "store_ending_date")
-    private Date dateClose;
-  //  mappedBy = "stack"
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @Column(name = "store_opening_time")
+    @JsonFormat(pattern = "HH:mm")
+    private LocalTime timeOpen;
+    @Column(name = "store_ending_time")
+    @JsonFormat(pattern = "HH:mm")
+    private LocalTime timeClose;
+    @OneToMany(mappedBy = "stack", cascade = CascadeType.ALL, orphanRemoval = true)
     @Exclude
-    private List<StackLaptop> stackLaptops;
+    private List<StackLaptop> laptops = new ArrayList<>();
 
-    public StackEntity(List<StackLaptop> laptops) {
-        this.stackLaptops = laptops;
+    public StackEntity(StackDtoIn stackDto) {
+        setTitle(stackDto.getTitle());
+        setAddress(stackDto.getAddress());
+    }
+
+    public void addLaptop(LaptopEntity laptop, Integer quantity) {
+        StackLaptop stack = new StackLaptop(this, laptop, quantity);
+        laptops.add(stack);
+        laptop.getStacks().add(stack);
     }
 
     @Override

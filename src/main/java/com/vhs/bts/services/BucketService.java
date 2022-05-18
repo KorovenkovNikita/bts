@@ -27,7 +27,7 @@ public class BucketService {
         return bucketRepository.findAll();
     }
 
-    public BucketEntity changeLaptopsToBucket(Long id, BucketDtoIn bucketDto) {
+    public BucketEntity changeLaptopsInTheBucketById(Long id, BucketDtoIn bucketDto) {
         BucketEntity bucketEntity = getBucketById(id);
         bucketEntity.setLaptops(bucketDto.getLaptopsId().stream().map(laptopService::getLaptopById).collect(Collectors.toList()));
         bucketEntity.setDate(Calendar.getInstance(TimeZone.getTimeZone("Europe/Moscow")).getTime());

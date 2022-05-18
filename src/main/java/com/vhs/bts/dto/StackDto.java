@@ -1,8 +1,7 @@
 package com.vhs.bts.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.vhs.bts.entities.StackLaptop;
-import java.util.Date;
+import java.time.LocalTime;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,8 +16,8 @@ public class StackDto {
     private Long id;
     private String title;
     private String address;
-    private Date dateOpen;
-    private Date dateClose;
-    private List<StackLaptop> laptops;
+    private LocalTime timeOpen;
+    private LocalTime timeClose;
+    private List<NumberOfLaptopsInStackDto> laptops;
 
 }

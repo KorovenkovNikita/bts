@@ -17,10 +17,11 @@ import lombok.ToString;
 @Embeddable
 public class StackLaptopId implements Serializable {
 
-    @Column(name = "laptop_id")
-    private Long laptopId;
     @Column(name = "stack_id")
     private Long stackId;
+    @Column(name = "laptop_id")
+    private Long laptopId;
+
 
     public StackLaptopId(Long laptopId, Long stackId) {
         setLaptopId(laptopId);

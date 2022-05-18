@@ -25,7 +25,7 @@ public class GraphicCardEntity {
 
     public GraphicCardEntity(GraphicCardDtoIn graphicCardDto) {
         setManufacturer(graphicCardDto.getManufacturer());
-        setModelNumber(graphicCardDto.getManufacturer());
+        setModelNumber(graphicCardDto.getModelNumber());
         setMemory(graphicCardDto.getMemory());
     }
 }

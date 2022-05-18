@@ -4,7 +4,6 @@ import com.vhs.bts.dto.LaptopDtoIn;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -31,7 +30,7 @@ import org.hibernate.annotations.NaturalIdCache;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "Laptop")
+@Entity
 @NaturalIdCache
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class LaptopEntity {
@@ -53,10 +52,9 @@ public class LaptopEntity {
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "laptops")
     @Exclude
     private List<BucketEntity> bucket;
-    //mappedBy = "laptop"
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "laptop")
     @Exclude
-    private List<StackEntity> stacks = new ArrayList<>();
+    private List<StackLaptop> stacks = new ArrayList<>();
 
     public LaptopEntity(LaptopDtoIn laptopDto, GraphicCardEntity graphicCardEntity, ProcessorEntity processor, ScreenEntity screen) {
         setName(laptopDto.getName());

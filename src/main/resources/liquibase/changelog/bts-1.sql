@@ -21,7 +21,7 @@ create table graphic_card
     id           bigint auto_increment
         primary key,
     manufacturer varchar(255) null,
-    memory       int          not null,
+    memory       int not null,
     model_number varchar(255) null
 );
 create table laptop
@@ -29,9 +29,9 @@ create table laptop
     id              bigint auto_increment
         primary key,
     name            varchar(255) null,
-    graphic_card_id bigint       null,
-    processor_id    bigint       null,
-    screen_id       bigint       null,
+    graphic_card_id bigint null,
+    processor_id    bigint null,
+    screen_id       bigint null,
     constraint FK1dsxk7e8ypysp97ymdqxclm75
         foreign key (graphic_card_id) references graphic_card (id),
     constraint FK6xrunp3ky90hg244hix9mtt7a
@@ -49,7 +49,7 @@ create table user
 create table bucket
 (
     date    datetime null,
-    user_id bigint   not null
+    user_id bigint not null
         primary key,
     constraint FKql6bmsmds3jinwe5uvlwx11cs
         foreign key (user_id) references user (id)

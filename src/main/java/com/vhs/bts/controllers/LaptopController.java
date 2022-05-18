@@ -30,8 +30,8 @@ public class LaptopController {
     }
 
     @GetMapping("/{id}")
-    public LaptopEntity getByLaptopId(@PathVariable Long id) {
-        return laptopService.getLaptopById(id);
+    public LaptopDto getByLaptopId(@PathVariable Long id) {
+        return dtoConverter.simpleConvert(laptopService.getLaptopById(id),LaptopDto.class);
     }
 
     @DeleteMapping("/{id}")

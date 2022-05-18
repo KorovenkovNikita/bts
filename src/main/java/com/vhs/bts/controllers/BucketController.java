@@ -29,7 +29,7 @@ public class BucketController {
 
     @PutMapping("/{id}")
     public BucketDto addLaptopsToBucket(@PathVariable Long id, @RequestBody BucketDtoIn bucketDto) {
-        return dtoConverter.simpleConvert(bucketService.changeLaptopsToBucket(id, bucketDto), BucketDto.class);
+        return dtoConverter.simpleConvert(bucketService.changeLaptopsInTheBucketById(id, bucketDto), BucketDto.class);
     }
 
     @GetMapping("/{id}")

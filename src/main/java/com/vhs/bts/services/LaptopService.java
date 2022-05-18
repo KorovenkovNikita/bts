@@ -34,6 +34,7 @@ public class LaptopService {
         return laptopRepository.findAll();
     }
 
+
     public LaptopEntity createLaptop(LaptopDtoIn laptopDto) {
         log.info("Create new laptop: {}", laptopDto.getName());
         return laptopRepository.save(new LaptopEntity(laptopDto, graphicCardService.getGraphicCardById(laptopDto.getGraphicCardId()),
