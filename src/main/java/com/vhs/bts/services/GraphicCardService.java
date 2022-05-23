@@ -16,7 +16,7 @@ import java.util.List;
 public class GraphicCardService {
     private final GraphicCardRepository graphicCardRepository;
 
-    public List<GraphicCardEntity> getGraphicCards() {
+    public List<GraphicCardEntity> getAllGraphicCards() {
         return graphicCardRepository.findAll();
     }
 

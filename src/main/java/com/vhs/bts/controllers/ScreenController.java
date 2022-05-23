@@ -19,8 +19,8 @@ public class ScreenController {
     private final ScreenService screenService;
 
     @GetMapping
-    public List<ScreenDto> getScreens() {
-        return dtoConverter.simpleConvert(screenService.getScreens(), ScreenDto.class);
+    public List<ScreenDto> getAllScreens() {
+        return dtoConverter.simpleConvert(screenService.getAllScreens(), ScreenDto.class);
     }
 
     @PostMapping

@@ -23,8 +23,8 @@ public class BucketController {
     private final BucketService bucketService;
 
     @GetMapping
-    public List<BucketDto> getBuckets() {
-        return dtoConverter.simpleConvert(bucketService.getBuckets(), BucketDto.class);
+    public List<BucketDto> getAllBuckets() {
+        return dtoConverter.simpleConvert(bucketService.getAllBuckets(), BucketDto.class);
     }
 
     @PutMapping("/{id}")

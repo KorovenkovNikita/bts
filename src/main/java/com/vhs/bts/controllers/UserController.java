@@ -20,8 +20,8 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping
-    public List<UserSlimDto> getUsers() {
-        return dtoConverter.simpleConvert(userService.getUsers(), UserSlimDto.class);
+    public List<UserSlimDto> getAllUsers() {
+        return dtoConverter.simpleConvert(userService.getAllUsers(), UserSlimDto.class);
     }
 
     @PostMapping

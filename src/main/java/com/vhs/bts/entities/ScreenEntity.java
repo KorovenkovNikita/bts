@@ -1,15 +1,25 @@
 package com.vhs.bts.entities;
 
 import com.vhs.bts.dto.ScreenDtoIn;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString.Exclude;
+import org.hibernate.Hibernate;
 
 @Table(name = "screen")
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -22,11 +32,29 @@ public class ScreenEntity {
     private String screenResolution;
     private String screenBrightness;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "screen")
+    @Exclude
     private List<LaptopEntity> laptops;
 
     public ScreenEntity(ScreenDtoIn screenDto) {
         setScreenDiagonalInInches(screenDto.getScreenDiagonalInInches());
         setScreenResolution(screenDto.getScreenResolution());
         setScreenBrightness(screenDto.getScreenBrightness());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) {
+            return false;
+        }
+        ScreenEntity screen = (ScreenEntity) o;
+        return id != null && Objects.equals(id, screen.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
 }

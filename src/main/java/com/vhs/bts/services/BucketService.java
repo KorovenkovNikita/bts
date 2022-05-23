@@ -23,7 +23,7 @@ public class BucketService {
     private final BucketRepository bucketRepository;
     private final LaptopService laptopService;
 
-    public List<BucketEntity> getBuckets() {
+    public List<BucketEntity> getAllBuckets() {
         return bucketRepository.findAll();
     }
 

@@ -18,7 +18,7 @@ public class UserService {
     private final BucketService bucketService;
     private final UserRepository userRepository;
 
-    public List<UserEntity> getUsers() {
+    public List<UserEntity> getAllUsers() {
         return userRepository.findAll();
     }
 

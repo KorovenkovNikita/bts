@@ -23,7 +23,7 @@ public class ScreenService {
             .orElseThrow(() -> new BtsException(HttpStatus.NOT_FOUND, "Cannot find screen with id = " + id));
     }
 
-    public List<ScreenEntity> getScreens() {
+    public List<ScreenEntity> getAllScreens() {
         return screenRepository.findAll();
     }
 

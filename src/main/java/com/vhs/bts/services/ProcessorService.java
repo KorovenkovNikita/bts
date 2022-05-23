@@ -16,7 +16,7 @@ import java.util.List;
 public class ProcessorService {
     private final ProcessorRepository processorRepository;
 
-    public List<ProcessorEntity> getProcessors() {
+    public List<ProcessorEntity> getAllProcessors() {
         return processorRepository.findAll();
     }
 

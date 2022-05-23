@@ -27,10 +27,10 @@ public class LaptopService {
     @Transactional
     @Scheduled(cron = "0 * * * * *")
     public void scheduleTaskUsingCronExpression() {
-        log.info("Laptops available: {}", getLaptops().stream().collect(Collectors.toMap(LaptopEntity::getId, LaptopEntity::getName)));
+        log.info("Laptops available: {}", getAllLaptops().stream().collect(Collectors.toMap(LaptopEntity::getId, LaptopEntity::getName)));
     }
 
-    public List<LaptopEntity> getLaptops() {
+    public List<LaptopEntity> getAllLaptops() {
         return laptopRepository.findAll();
     }
 
@@ -49,7 +49,7 @@ public class LaptopService {
         laptopRepository.deleteById(id);
     }
 
-    public LaptopEntity updateLaptopById(Long id, LaptopDtoIn laptopDto) {
+    public LaptopEntity changeLaptopById(Long id, LaptopDtoIn laptopDto) {
         LaptopEntity laptop = getLaptopById(id);
         laptop.setName(laptopDto.getName());
         laptop.setScreen(screenService.getScreenById(laptopDto.getScreenId()));

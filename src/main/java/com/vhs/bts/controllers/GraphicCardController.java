@@ -18,8 +18,8 @@ public class GraphicCardController {
     private final GraphicCardService graphicCardService;
 
     @GetMapping
-    public List<GraphicCardDto> getGraphicCards() {
-        return dtoConverter.simpleConvert(graphicCardService.getGraphicCards(), GraphicCardDto.class);
+    public List<GraphicCardDto> getAllGraphicCards() {
+        return dtoConverter.simpleConvert(graphicCardService.getAllGraphicCards(), GraphicCardDto.class);
     }
 
     @PostMapping

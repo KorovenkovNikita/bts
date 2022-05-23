@@ -19,8 +19,8 @@ public class ProcessorController {
     private final ProcessorService processorService;
 
     @GetMapping
-    public List<ProcessorDto> getProcessors() {
-        return dtoConverter.simpleConvert(processorService.getProcessors(), ProcessorDto.class);
+    public List<ProcessorDto> getAllProcessors() {
+        return dtoConverter.simpleConvert(processorService.getAllProcessors(), ProcessorDto.class);
     }
 
     @PostMapping
